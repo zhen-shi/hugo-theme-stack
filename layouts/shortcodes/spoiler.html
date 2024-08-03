@@ -1,6 +1,6 @@
 <details>
     <summary>
-        {{.Get "text"}}
+        {{.Get "text" }}
     </summary>
-    {{.Inner}}
+    {{.Inner | markdownify }}
 </details>
