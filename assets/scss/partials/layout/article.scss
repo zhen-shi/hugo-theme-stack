@@ -67,7 +67,6 @@
             }
 
             .article-tags {
-                flex-wrap: wrap;
                 text-transform: unset;
             }
 
@@ -190,7 +189,6 @@
         height: 80px;
 
         .article-title {
-            font-family: "EB Garamond", "Noto Serif SC";
             width: 220px;
             height: 80px;
             font-size: 1.8rem;
@@ -224,11 +222,31 @@
     h4,
     h5,
     h6 {
-        font-family: "EB Garamond", "Noto Serif SC";
         margin-inline-start: calc((var(--card-padding)) * -1);
         padding-inline-start: calc(var(--card-padding) - var(--heading-border-size));
-        border-inline-start: var(--heading-border-size) solid var(--accent-color-darker);
-        font-weight: 600;
+        border-inline-start: var(--heading-border-size) solid var(--accent-color);
+        position: relative;
+
+        a.header-anchor {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            width: var(--card-padding);
+            text-align: center;
+            color: var(--accent-color);
+
+            &:before {
+                content: "#";
+            }
+        }
+
+        &:hover,
+        &:focus {
+            a.header-anchor {
+                opacity: 1;
+            }
+        }
     }
 
     figure {
