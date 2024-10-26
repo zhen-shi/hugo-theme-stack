@@ -4,7 +4,12 @@
     {{ $num = .Get 1 }}
 {{ end }}
 {{ $width := div 90 $num }}
-{{$items := getJSON $file }}
+{{ $items := dict }}
+{{ with resources.Get $file }}
+    {{ $items = . | transform.Unmarshal }}
+{{ else }}
+    {{ errorf "Unable to get resource %q" $file }}
+{{ end }}
 
 <div class="work-list">
     {{range $item := $items}}
