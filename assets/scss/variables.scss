@@ -51,11 +51,11 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 *   Card style
 */
 :root {
---card-background: #F7F8F8;
+    --card-background: #F7F8F8;
     --card-background-selected: #eaeaea;
 
     --card-text-color-main: #2c3e50;
-    --card-text-color-secondary: #737373;
+    --card-text-color-secondary: #444b65;
     --card-text-color-tertiary: #5C5470;
     --card-separator-color: rgba(218, 218, 218, 0.5);
 
@@ -106,7 +106,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 */
 :root {
     --blockquote-border-size: 3px;
-    --blockquote-background-color: #f2f2f2;
+    --blockquote-background-color: #f4f4f4;
 
     --heading-border-size: 3px;
 
@@ -132,7 +132,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
         --table-border-color: #717171;
         --tr-even-background-color: #545454;
 
-        --blockquote-background-color: rgb(65, 65, 65);
+        --blockquote-background-color: rgb(70, 70, 70);
     }
 }
 

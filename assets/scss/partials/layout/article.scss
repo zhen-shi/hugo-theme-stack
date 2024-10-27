@@ -267,6 +267,7 @@
         border-inline-start: var(--blockquote-border-size) solid var(--card-separator-color);
         padding: 15px calc(var(--card-padding) - var(--blockquote-border-size));
         background-color: var(--blockquote-background-color);
+        color: var(--card-text-color-secondary);
 
         .cite {
             display: block;
