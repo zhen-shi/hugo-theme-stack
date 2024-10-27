@@ -2,16 +2,16 @@
 {{ $dbApiUrl := "" }}
 
 {{ if ( findRE `^.*neodb\.social\/.*` $dbUrl ) }}
-    {{ $dbUrl = replaceRE `.*neodb.social\/(.*\/.*)` "$1" $dbUrl }}
-    {{ $dbApiUrl = print "https://neodb.social/api/" $dbUrl }}
+    {{ $dbPath := replaceRE `.*neodb.social\/(.*\/.*)` "$1" $dbUrl }}
+    {{ $dbApiUrl = print "https://neodb.social/api/" $dbPath }}
 {{ else }}
     {{ $dbApiUrl = print "https://neodb.social/api/catalog/fetch?url=" $dbUrl }}
 {{ end }}
 
 {{ with resources.GetRemote $dbApiUrl }}
     {{ with .Err }}
-        {{ warnf "Failed to fetch neodb content, please check API validity: %s" . }}
-        <p style="text-align: center;"><small>远程获取内容失败。</small></p>
+        {{ warnf "Failed to fetch neodb content, Please check if NeoDB is reachable: %s" . }}
+        <p style="text-align: center;"><small>远程获取内容失败，请检查 NeoDB 是否可达。</small></p>
     {{ else }}
         {{ $dbFetch := transform.Unmarshal . }}
         {{ $itemRating := 0 }}{{ with $dbFetch.rating }}{{ $itemRating = . }}{{ end }}
