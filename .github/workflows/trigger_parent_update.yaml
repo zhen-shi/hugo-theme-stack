@@ -1,0 +1,16 @@
+name: Trigger Parient Update
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger parent repository update
+        run: |
+          curl -X POST https://api.github.com/repos/zhen-shi/zhen-shi.github.io/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u zhen-shi:${{ secrets.MY_REPO_PAT }} \
+          --data '{"event_type": "notify theme update", "client_payload": { "repository": "arst" }}'
