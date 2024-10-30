@@ -339,6 +339,7 @@
         background-color: var(--pre-background-color);
         padding: var(--card-padding);
         position: relative;
+        font-size: 14px;
 
         &:hover {
             .copyCodeButton {
