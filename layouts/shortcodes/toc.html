@@ -1,0 +1,17 @@
+<details>
+    <summary>
+        目录（点击展开）
+    </summary>
+    <div class="toc">
+        {{ .Page.TableOfContents }}
+    </div>
+</details>
+
+<style>
+    .toc {
+        font-family: var(--base-font-family);
+        border-inline-start: var(--blockquote-border-size) solid var(--card-separator-color);
+        padding: 15px calc(var(--card-padding) - var(--blockquote-border-size));
+        background-color: var(--blockquote-background-color);
+    }
+</style>
