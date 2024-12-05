@@ -189,7 +189,7 @@
         height: 80px;
 
         .article-title {
-            font-family: "EB Garamond", "Noto Serif SC";
+            font-family: var(--title-font-family);
             width: 220px;
             height: 80px;
             font-size: 1.8rem;
@@ -227,7 +227,7 @@
     h4,
     h5,
     h6 {
-        font-family: "EB Garamond", "Noto Serif SC";
+        font-family: var(--title-font-family);
         margin-inline-start: calc((var(--card-padding)) * -1);
         padding-inline-start: calc(var(--card-padding) - var(--heading-border-size));
         border-inline-start: var(--heading-border-size) solid var(--accent-color);

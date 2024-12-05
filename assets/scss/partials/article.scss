@@ -54,7 +54,7 @@
 }
 
 .article-title {
-    font-family: "EB Garamond", "Noto Serif SC";
+    font-family: var(--title-font-family);
     font-weight: 600;
     margin: 0;
     color: var(--card-text-color-main);
