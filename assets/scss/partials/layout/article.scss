@@ -230,7 +230,7 @@
         font-family:var(--title-font-family);
         margin-inline-start: calc((var(--card-padding)) * -1);
         padding-inline-start: calc(var(--card-padding) - var(--heading-border-size));
-        //border-inline-start: var(--heading-border-size) solid var(--card-text-color-tertiary);
+        border-inline-start: var(--heading-border-size) solid var(--card-text-color-tertiary);
         position: relative;
         font-weight: 600;
 
