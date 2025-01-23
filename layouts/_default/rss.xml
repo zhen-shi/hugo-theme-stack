@@ -27,7 +27,7 @@
 {{/*            {{- $content = safeHTML (.Content | html) -}}*/}}
         {{- end -}}
         <item>
-        <title>{{ .Title }}</title>
+        <title>本博客所有内容禁止一切形式的转载、收录、爬取</title>
         <link>{{ .Permalink }}</link>
         <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
         {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}
