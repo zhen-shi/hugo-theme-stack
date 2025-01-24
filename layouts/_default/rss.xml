@@ -4,7 +4,7 @@
 {{- $pages := where $pages "Params.hidden" "!=" true -}}
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
-{{- $pages = $pages | first $limit -}}
+    {{- $pages = $pages | first $limit -}}
 {{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -19,21 +19,34 @@
         <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
         <lastBuildDate>{{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
         {{- with .OutputFormats.Get "RSS" -}}
-        {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+            {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
         {{- end -}}
-        {{ range $pages }}
-        {{- $content := safeHTML (.Summary | html) -}}
-        {{- if .Site.Params.rssFullContent -}}
-{{/*            {{- $content = safeHTML (.Content | html) -}}*/}}
-        {{- end -}}
+
         <item>
-        <title>本博客所有内容禁止一切形式的转载、收录、爬取</title>
-        <link>{{ .Permalink }}</link>
-        <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
-        {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}
-        <guid>{{ .Permalink }}</guid>
-        <description>本博客所有内容禁止一切形式的转载、收录、爬取</description>
+            <title>关于停用RSS的说明</title>
+            <link>https://zhen-shi.github.io/</link>
+            <description>
+                <p>
+                由于第三方未经授权的、经由RSS的内容存档和再分发，为避免此类行为再度发生，本博客现已关闭RSS输出。
+                对此我非常惭愧，也非常遗憾。我一直是RSS的重度使用者，此前一直提供全文RSS，并一再优化博客的RSS输出，初心是希望让想要订阅的个人能够无障碍地订阅和阅读。我一直认为在一个理想的互联网环境中，个人的访问和触达不应存在重重阻碍和藩篱，但开放、包容与易用在另一些人和组织的眼里只是方便掠夺的温床，我们也因此不可避免地走向隔离与分裂。
+                </p>
+            </description>
+            <pubDate>Fri, 24 Jan 2025</pubDate>
         </item>
-        {{ end }}
+
+{{/*        {{ range $pages }}*/}}
+{{/*            {{- $content := safeHTML (.Summary | html) -}}*/}}
+{{/*            {{- if .Site.Params.rssFullContent -}}*/}}
+{{/*                {{- $content = safeHTML (.Content | html) -}}*/}}
+{{/*            {{- end -}}*/}}
+{{/*            <item>*/}}
+{{/*                <title>{{ .Title }}</title>*/}}
+{{/*                <link>{{ .Permalink }}</link>*/}}
+{{/*                <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>*/}}
+{{/*                {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}*/}}
+{{/*                <guid>{{ .Permalink }}</guid>*/}}
+{{/*                <description>{{ $content }}</description>*/}}
+{{/*            </item>*/}}
+{{/*        {{ end }}*/}}
     </channel>
 </rss>
