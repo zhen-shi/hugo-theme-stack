@@ -30,12 +30,12 @@
 
         <div>
             {{ if .Params.categories }}
-            {{ partial "helper/icon" "categories" }}
+            {{ partial "helper/icon" "archives" }}
                 {{ range (.GetTerms "categories") }}
                     <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
                 {{ end }}
             {{ end }}
-        </div> 
+        </div>
 
         {{ if $showReadingTime }}
             <div>
