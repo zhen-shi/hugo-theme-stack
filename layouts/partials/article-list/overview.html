@@ -1,15 +1,23 @@
 {{ $pages := where .Context.Site.RegularPages ".Params.categories" "intersect" (slice .Category) }}
+{{ $limit := 4 }}
 <header>
-    <a href="categories/{{ .Category }}">
-        <div class="section-card">
-            <div class="section-details">
-                <h1 class="section-term">{{ .Category | strings.FirstUpper }}</h1>
-            </div>
+    <div class="section-card">
+        <div class="section-details">
+            <h1 class="section-term">{{ .Category | strings.FirstUpper }}</h1>
         </div>
-    </a>
+    </div>
     <section class="article-list--compact">
-        {{ range first 4 $pages }}
+        {{ range first $limit $pages }}
             {{ partial "article-list/compact" . }}
         {{ end }}
     </section>
+    {{ if (gt (len $pages) $limit) }}
+        <a href="categories/{{ .Category | strings.ToLower }}">
+            <div class="section-card">
+                <div class="section-details">
+                    <h3 class="section-count">Read More >></h3>
+                </div>
+            </div>
+        </a>
+    {{ end }}
 </header>

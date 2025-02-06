@@ -168,10 +168,10 @@
             padding: var(--small-card-padding);
             gap: 15px;
         }
-
-        &:not(:last-of-type) {
-            border-bottom: 1.5px solid var(--card-separator-color);
-        }
+        //
+        //&:not(:last-of-type) {
+        //    border-bottom: 1.5px solid var(--card-separator-color);
+        //}
 
         .article-details {
             flex-grow: 1;
