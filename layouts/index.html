@@ -4,13 +4,10 @@
     {{ $filtered := ($pages | intersect $notHidden) }}
     {{ $pag := .Paginate ($filtered) }}
 
-    <section class="article-list">
-        {{ range $index, $element := $pag.Pages }}
-            {{ partial "article-list/default" . }}
-        {{ end }}
-    </section>
+    {{ partial "article-list/overview" (dict "Context" . "Category" "Article") }}
+    {{ partial "article-list/overview" (dict "Context" . "Category" "Records") }}
+    {{ partial "article-list/overview" (dict "Context" . "Category" "Introductions") }}
 
-    {{- partial "pagination.html" . -}}
     {{- partial "footer/footer" . -}}
 {{ end }}
 
