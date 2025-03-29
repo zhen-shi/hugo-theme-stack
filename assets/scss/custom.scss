@@ -1,5 +1,20 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
 
+@import url("https://static.zeoseven.com/zsft/83/main/result.css");
+@import url("https://static.zeoseven.com/zsft/183/main/result.css");
+@import url("https://fonts.cdnfonts.com/css/eb-garamond-2");
+
+
+/* latin */
+@font-face {
+    font-family: 'Varela Round';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/varelaround/v20/w8gdH283Tvk__Lua32TysjIfp8uPLdshZg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2018-2019, U+201C-201D;
+}
+
 @media (min-width: 1024px) {
     .article-list--compact.links {
         display: grid;
