@@ -4,7 +4,7 @@
     --sys-font-family: "EB Garamond";
     --zh-font-family:  "Chill Round Gothic";
     --base-font-family: "EB Garamond", "Chill Round Gothic";
-    --article-font-family: "Chill Round Gothic";
+    --article-font-family: "Varela Round", "Chill Round Gothic";
   }
 </style>
 
@@ -18,6 +18,16 @@
     customFont.rel = "stylesheet";
 
     document.head.appendChild(customFont);
+  })();
+  (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+          "https://fonts.googleapis.com/css2?family=Varela+Round&display=swap";
+
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+
+      document.head.appendChild(customFont);
   })();
   (function () {
     const customFont = document.createElement("link");
