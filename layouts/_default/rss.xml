@@ -21,32 +21,19 @@
         {{- with .OutputFormats.Get "RSS" -}}
             {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
         {{- end -}}
-
-        <item>
-            <title>关于停用RSS的说明</title>
-            <link>https://zhen-shi.github.io/</link>
-            <description>
-                <p>
-                由于第三方未经授权的、经由RSS的内容存档和再分发，为避免此类行为再度发生，本博客现已关闭RSS输出。
-                对此我非常惭愧，也非常遗憾。我一直是RSS的重度使用者，此前一直提供全文RSS，并一再优化博客的RSS输出，初心是希望让想要订阅的个人能够无障碍地订阅和阅读。我一直认为在一个理想的互联网环境中，个人的访问和触达不应存在重重阻碍和藩篱，但开放、包容与易用在另一些人和组织的眼里只是方便掠夺的温床，我们也因此不可避免地走向隔离与分裂。
-                </p>
-            </description>
-            <pubDate>Fri, 24 Jan 2025</pubDate>
-        </item>
-
-{{/*        {{ range $pages }}*/}}
-{{/*            {{- $content := safeHTML (.Summary | html) -}}*/}}
-{{/*            {{- if .Site.Params.rssFullContent -}}*/}}
-{{/*                {{- $content = safeHTML (.Content | html) -}}*/}}
-{{/*            {{- end -}}*/}}
-{{/*            <item>*/}}
-{{/*                <title>{{ .Title }}</title>*/}}
-{{/*                <link>{{ .Permalink }}</link>*/}}
-{{/*                <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>*/}}
-{{/*                {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}*/}}
-{{/*                <guid>{{ .Permalink }}</guid>*/}}
-{{/*                <description>{{ $content }}</description>*/}}
-{{/*            </item>*/}}
-{{/*        {{ end }}*/}}
+        {{ range first 3 $pages }}
+            {{- $content := safeHTML (.Summary | html) -}}
+            {{- if .Site.Params.rssFullContent -}}
+                {{- $content = safeHTML (.Content | html) -}}
+            {{- end -}}
+            <item>
+                <title>🍂落叶捎来讯息🍂「枕石」于{{ .Date.Format "2006年1月2日" | safeHTML }}更新了一篇博客</title>
+                <link>{{ .Permalink }}</link>
+                <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+                {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}
+                <guid>{{ .Permalink }}</guid>
+                <description>由于第三方未经授权的、经由RSS的全文存储、索引和再分发，本博客将不再提供RSS内容输出，请移步原站阅读。</description>
+            </item>
+        {{ end }}
     </channel>
 </rss>
