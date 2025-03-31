@@ -4,8 +4,8 @@
     {{ $filtered := ($pages | intersect $notHidden) }}
     {{ $pag := .Paginate ($filtered) }}
 
-    {{ partial "article-list/overview" (dict "Context" . "Category" "Article") }}
     {{ partial "article-list/overview" (dict "Context" . "Category" "Records") }}
+    {{ partial "article-list/overview" (dict "Context" . "Category" "Article") }}
     {{ partial "article-list/overview" (dict "Context" . "Category" "Introductions") }}
 
     {{- partial "footer/footer" . -}}
