@@ -21,7 +21,15 @@
         {{ $itemRating := 0 }}{{ with $dbFetch.rating }}{{ $itemRating = . }}{{ end }}
             <div class="db-card">
                 <div class="db-card-subject">
-                    <div class="db-card-post"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="{{ $dbFetch.cover_image_url }}" onerror="this.parentElement.remove()"></div>
+                    <div class="db-card-post">
+                        <img loading="lazy"
+                             decoding="async"
+                             referrerpolicy="no-referrer"
+                             src="{{ $dbFetch.cover_image_url }}"
+                             onload="this.style.display='block'"
+                             onerror="this.parentElement.remove()"
+                        >
+                    </div>
                     <div class="db-card-content">
                         <div class="db-card-title"><a href="{{ $dbUrl }}" class="cute" target="_blank" rel="noreferrer">{{ $dbFetch.title }}</a></div>
 {{/*                            <div class="rating">*/}}
