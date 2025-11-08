@@ -44,10 +44,6 @@
     }
 
     .archives-year {
-        &:not(:last-of-type) {
-            border-bottom: 1.5px solid var(--card-separator-color);
-        }
-
         a {
             font-size: 1.4rem;
             padding: 18px 25px;

@@ -21,22 +21,24 @@
         {{ $itemRating := 0 }}{{ with $dbFetch.rating }}{{ $itemRating = . }}{{ end }}
             <div class="db-card">
                 <div class="db-card-subject">
-                    <div class="db-card-post"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="{{ $dbFetch.cover_image_url }}"></div>
+                    {{ if $dbFetch.cover_image_url }}
+                        <div class="db-card-post"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="{{ $dbFetch.cover_image_url }}"></div>
+                    {{ end }}
                     <div class="db-card-content">
                         <div class="db-card-title"><a href="{{ $dbUrl }}" class="cute" target="_blank" rel="noreferrer">{{ $dbFetch.title }}</a></div>
-                            <div class="rating">
-                                {{ if $dbFetch.rating }}
-                                <span class="allstardark">
-                                    <span class="allstarlight" style="width:{{mul 10 $itemRating }}%"></span>
-                                </span>
-                                <span class="rating_nums">{{ $itemRating }}</span>
-                                {{ else }}
-                                    <span class="rating_nums" style="color:#737373;">评分人数不足</span>
-                                {{ end }}
-                            </div>
+{{/*                            <div class="rating">*/}}
+{{/*                                {{ if $dbFetch.rating }}*/}}
+{{/*                                <span class="allstardark">*/}}
+{{/*                                    <span class="allstarlight" style="width:{{mul 10 $itemRating }}%"></span>*/}}
+{{/*                                </span>*/}}
+{{/*                                <span class="rating_nums">{{ $itemRating }}</span>*/}}
+{{/*                                {{ else }}*/}}
+{{/*                                    <span class="rating_nums" style="color:var(--card-separator-color);">评分人数不足</span>*/}}
+{{/*                                {{ end }}*/}}
+{{/*                            </div>*/}}
                         <div class="db-card-abstract">{{ $dbFetch.brief }}</div>
                     </div>
-                    <div class="db-card-cate">{{ $dbFetch.category }}</div>
+{{/*                    <div class="db-card-cate">{{ $dbFetch.category }}</div>*/}}
                 </div>
             </div>
     {{ end }}
@@ -82,19 +84,24 @@
     .db-card-comment {
         font-size: 14px;
         overflow: auto;
-        max-height: 7rem
+        max-height: 9rem
     }
 
     .db-card-cate {
         position: absolute;
         top: 0;
         right: 0;
-        background: #f99b0170;
+        background: var(--card-separator-color);
+        color: var(--card-text-color-main);
         padding: 1px 8px;
         font-size: small;
         font-style: italic;
         border-radius: 0 8px 0 8px;
         text-transform: capitalize
+    }
+
+    .db-card-post:has(img:not([src])) {
+        display: none;
     }
 
     .db-card-post img {
@@ -115,24 +122,24 @@
 
     .rating .allstardark {
         position: relative;
-        color: #f99b01;
+        color: var(--accent-color-darker);
         height: 16px;
         width: 80px;
         background-size: auto 100%;
         margin-right: 8px;
         background-repeat: repeat;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6TTY2NC44IDU2MS42bDM2LjEgMjEwLjNMNTEyIDY3Mi43IDMyMy4xIDc3MmwzNi4xLTIxMC4zLTE1Mi44LTE0OUw0MTcuNiAzODIgNTEyIDE5MC43IDYwNi40IDM4MmwyMTEuMiAzMC43LTE1Mi44IDE0OC45eiIgZmlsbD0iI2Y5OWIwMSIvPjwvc3ZnPg==)
+        background-image: url(data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%20512%20512%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20stroke%3D%22%23A53860%22%20fill%3D%22%23A53860%22%20d%3D%22M256%2038.013c-22.458%200-66.472%20110.3-84.64%20123.502-18.17%2013.2-136.674%2020.975-143.614%2042.334-6.94%2021.358%2084.362%2097.303%2091.302%20118.662%206.94%2021.36-22.286%20136.465-4.116%20149.665%2018.17%2013.2%20118.61-50.164%20141.068-50.164%2022.458%200%20122.9%2063.365%20141.068%2050.164%2018.17-13.2-11.056-128.306-4.116-149.665%206.94-21.36%2098.242-97.304%2091.302-118.663-6.94-21.36-125.444-29.134-143.613-42.335-18.168-13.2-62.182-123.502-84.64-123.502z%22%2F%3E%3C%2Fsvg%3E)
     }
 
     .rating .allstarlight {
         position: absolute;
         left: 0;
-        color: #f99b01;
+        color: var(--accent-color);
         height: 16px;
         overflow: hidden;
         background-size: auto 100%;
         background-repeat: repeat;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6IiBmaWxsPSIjZjk5YjAxIi8+PC9zdmc+)
+        background-image: url(data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%20512%20512%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20stroke%3D%22%23A53860%22%20fill%3D%22%23A53860%22%20d%3D%22M256%2038.013c-22.458%200-66.472%20110.3-84.64%20123.502-18.17%2013.2-136.674%2020.975-143.614%2042.334-6.94%2021.358%2084.362%2097.303%2091.302%20118.662%206.94%2021.36-22.286%20136.465-4.116%20149.665%2018.17%2013.2%20118.61-50.164%20141.068-50.164%2022.458%200%20122.9%2063.365%20141.068%2050.164%2018.17-13.2-11.056-128.306-4.116-149.665%206.94-21.36%2098.242-97.304%2091.302-118.663-6.94-21.36-125.444-29.134-143.613-42.335-18.168-13.2-62.182-123.502-84.64-123.502z%22%2F%3E%3C%2Fsvg%3E)
     }
 
     @media(max-width: 550px) {
